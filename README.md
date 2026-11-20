@@ -1,68 +1,51 @@
 # CodeJS
 
-A lightweight, dependency-free JavaScript project built with vanilla JS—no `npm`, build tools, or external packages required.
+A lightweight, zero-dependency JavaScript project built with pure, vanilla JS. No `npm`, no build tools, and no external packages—just drop it in and run.
 
-## Prerequisites
+## ✨ Features
 
-* A modern web browser (Chrome, Firefox, Safari, Edge)
-* *(Optional)* A local static server (such as Python's `http.server` or VS Code's Live Server extension) if your project uses ES modules (`import`/`export`) or `fetch()`.
+* **Zero Dependencies:** 100% vanilla JavaScript with no third-party libraries.
+* **No Build Step:** Works directly in the browser without Webpack, Vite, or Node.js.
+* **Lightweight & Fast:** Minimal footprint for instant loading and execution.
+* **Easy to Integrate:** Include a single `<script>` tag and start coding.
 
-## Getting Started
+## 🚀 Getting Started
 
-1. **Clone or download the repository:**
-   ```bash
-   git clone https://github.com
-   cd codejs
-   ```
+Because CodeJS doesn't use `npm` or package managers, getting started takes only a few seconds.
 
-2. **Run the project:**
-   * **Direct Browser Open:** Double-click `index.html` to open it directly in your browser.
-   * **Local Server (Recommended for ES Modules):**
-     ```bash
-     # Using Python 3
-     python3 -m http.server 8000
-     ```
-     Then visit `http://localhost:8000` in your browser.
-
-## Project Structure
-
-```text
-codejs/
-├── index.html      # Main HTML entry point
-├── style.css       # Stylesheet
-├── app.js          # Core JavaScript logic
-└── README.md       # Project documentation
-```
-
-## Usage
-
-Describe how to interact with your application or include a quick code snippet showing how to use its functions:
+### Option 1: Direct Download
+1. Download the `main.js` file from this repository.
+2. Place it in your project folder.
+3. Link it in your HTML file:
 
 ```html
-<!-- Include directly via a script tag -->
-<script type="module" src="./app.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeJS App</title>
+</head>
+<body>
+
+  <!-- Include CodeJS -->
+  <script src="https://raw.githubusercontent.com/G-man124/CodeJS/refs/heads/main/main.js"></script>
+</body>
+</html>
 ```
 
-```javascript
-// Example usage inside app.js
-import { init } from './utils.js';
-
-init();
+### Option 2: Clone the Repository
+```bash
+git clone https://github.com/G-man124/CodeJS
+cd CodeJS
 ```
+Open `index.html` directly in any modern web browser.
 
-## Features
+## 📁 Project Structure
 
-* **Zero Dependencies:** Pure HTML, CSS, and vanilla JavaScript.
-* **No Build Step:** Edit files and refresh the browser to see changes immediately.
-* **Fast & Portable:** Drop the files onto any static web host to deploy.
+```text
+CodeJS/
+├── main.js
+├── package.json
+└── README.md
 
-## Contributing
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-name`).
-3. Make your changes and test them in the browser.
-4. Submit a pull request.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+```
