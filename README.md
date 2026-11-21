@@ -1,7 +1,7 @@
 
-# CodeJS
+<h1>CodeJS</h1> <image src="codeJS.jpeg" width="200" height="200">
 
-CodeJS is a lightweight JavaScript utility library that provides a wide range of functions for string manipulation, array operations, object utilities, DOM interactions, math calculations, and more.
+CodeJS is a lightweight JavaScript library that provides a wide range of functions for string manipulation, array operations, object utilities, DOM interactions, math calculations, and more.
 
 ## Features
 
@@ -84,8 +84,8 @@ CodeJS.clamp(15, 0, 10); // 10
 
 ```javascript
 CodeJS.formatDate(new Date(), { year: 'numeric', month: 'long', day: 'numeric' });
-// "October 10, 2023"
-CodeJS.timeAgo('2023-10-01'); // "9 days ago"
+// "October 10, 2026"
+CodeJS.timeAgo('2026-10-01');
 ```
 
 ### Function Utilities
