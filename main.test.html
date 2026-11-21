@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJS Demo</title>
+    <style>
+        /* Page Layout */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Main Card Container */
+        #div {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Typing Animation Banner */
+        #typing-target {
+            font-family: "Fira Code", "Courier New", monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #38bdf8;
+            background-color: #0f172a;
+            padding: 14px 18px;
+            border-radius: 8px;
+            border-left: 4px solid #38bdf8;
+            margin-top: 0;
+            margin-bottom: 24px;
+            min-height: 1.5em;
+        }
+
+        /* Blinking Cursor Effect */
+        #typing-target::after {
+            content: "|";
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Output Rows */
+        h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #94a3b8;
+            background-color: #0f172a;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Code Badges for Results */
+        .code-badge {
+            font-family: "Fira Code", "Courier New", monospace;
+            color: #34d399;
+            background-color: rgba(52, 211, 153, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        button {
+            flex: 1;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Secondary Button Style */
+        button.secondary {
+            background-color: #334155;
+            color: #f8fafc;
+        }
+
+        button.secondary:hover {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <script src="main.js"></script>
+    <div id="div"></div>
+
+    <script>
+        const div = document.getElementById('div');
+        const text = "Password";
+        const encoded = CodeJS.encode(text);
+        const decoded = CodeJS.decode(encoded);
+        const text_upper = CodeJS.upper("html");
+        const text_lower = CodeJS.lower("HTML");
+
+        // 1. Build the static layout and include a target element for typing
+        div.innerHTML = `
+            <p id="typing-target"></p>
+            <h3>Encoded text "Password": <span id="encoded-output" class="code-badge"></span></h3>
+            <h3>Decoded text "<span id="encoded-label"></span>": <span id="decoded-output" class="code-badge"></span></h3>
+            
+            <div class="button-group">
+                <button onclick="CodeJS.website('https://github.com/G-man124')">G-man124</button>
+                <button class="secondary" onclick="CodeJS.copy('This is the copied text')">Copy Text</button>
+            </div>
+
+            <h3>Text "html" uppercase: <span class="code-badge">${text_upper}</span></h3>
+            <h3>Text "HTML" lowercase: <span class="code-badge">${text_lower}</span></h3>
+        `;
+
+        // 2. Safely insert the encoded text so special characters don't break HTML
+        document.getElementById('encoded-output').textContent = encoded;
+        document.getElementById('encoded-label').textContent = encoded;
+        document.getElementById('decoded-output').textContent = decoded;
+
+        // 3. Run the typing animation into its own element so it isn't overwritten
+        const typingTarget = document.getElementById('typing-target');
+        CodeJS.type(typingTarget, "Hello CodeJS is typing.", 100);
+    </script>
+
+</body>
+</html>
