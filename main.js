@@ -2,6 +2,8 @@
   "use strict";
 
   const CodeJS = {};
+  
+  const params = new URLSearchParams(window.location.search);
 
   const resolveElement = (target, context = global.document) => {
     if (typeof target === "string") {
@@ -10,9 +12,47 @@
     return target?.nodeType === 1 ? target : null;
   };
 
-  // String utilities
-  CodeJS.capitalize = (str) =>
+  CodeJS.upper = (str) =>
     typeof str === "string" ? str.toUpperCase() : "";
+
+  CodeJS.lower = (str) =>
+    typeof str === "string" ? str.toLowerCase() : "";
+
+  CodeJS.encode = (str) =>
+    typeof str === "string" ? encodeURIComponent(str) : "";
+  
+  CodeJS.decode = (str) =>
+    typeof str === "string" ? decodeURIComponent(str) : "";
+
+  CodeJS.website = (url) => 
+    typeof url === "string" ? window.location.href = url : "";
+
+  CodeJS.copy = async (text) => {
+    if (typeof text === "string") {
+        await navigator.clipboard.writeText(text);
+    }
+    };
+
+    CodeJS.type = function (el, text = '', speed = 60) {
+      // Clear any existing typing animation on this element
+      if (el._typeTimer) clearInterval(el._typeTimer);
+      
+      el.textContent = '';
+      const chars = Array.from(text); // Safely splits emojis & unicode
+      if (!chars.length) return;
+    
+      let i = 0;
+      el._typeTimer = setInterval(() => {
+        el.textContent += chars[i++];
+        if (i >= chars.length) {
+          clearInterval(el._typeTimer);
+          delete el._typeTimer;
+        }
+      }, speed);
+    };
+    
+    
+
 
   CodeJS.camelCase = function (str) {
     if (typeof str !== "string") return "";
@@ -113,7 +153,7 @@
     return str.split(search).length - 1;
   };
 
-  CodeJS.removeWhitespace = function (str) {
+  CodeJS.removeSpaces = function (str) {
     return typeof str === "string" ? str.replace(/\s+/g, "") : "";
   };
 
