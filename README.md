@@ -1,44 +1,108 @@
+
 # CodeJS
 
-A JavaScript project for writing, running, and experimenting with code.
+CodeJS is a lightweight JavaScript utility library that provides a wide range of functions for string manipulation, array operations, object utilities, DOM interactions, math calculations, and more.
 
-## Requirements
+## Features
 
-- [Node.js](https://nodejs.org/) 18 or newer
-- npm
+- **String Utilities**: Convert cases, truncate, reverse, slugify, and more.
+- **Array Utilities**: Unique, shuffle, chunk, flatten, and other array operations.
+- **Object Utilities**: Deep clone, merge, pick, omit, and more.
+- **DOM Utilities**: Select elements, manipulate classes, create elements, and handle events.
+- **Math Utilities**: Random numbers, factorial, GCD, prime checks, and more.
+- **Date Utilities**: Format dates, calculate time differences, and manipulate dates.
+- **Function Utilities**: Debounce, throttle, memoize, and more.
+- **Browser Storage**: Simplified localStorage handling.
 
-## Getting Started
+## Installation
 
-```bash
-git clone https://github.com/G-man124/CodeJS.git
-cd CodeJS
-npm install
+You can include `code.js` in your project by downloading the file or using it as a module.
+
+### Direct Script Tag
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/G-man124/CodeJS/main.js"></script>
+```
+
+### Node.js / CommonJS
+
+```javascript
+const CodeJS = require('https://cdn.jsdelivr.net/gh/G-man124/CodeJS/main.js');
+```
+
+### AMD
+
+```javascript
+require(['https://cdn.jsdelivr.net/gh/G-man124/CodeJS/main.js'], function (CodeJS) {
+  // Use CodeJS here
+});
 ```
 
 ## Usage
 
-Run the project using the repository's configured npm script:
+### String Utilities
 
-```bash
-npm start
+```javascript
+CodeJS.upper("hello"); // "HELLO"
+CodeJS.camelCase("hello world"); // "helloWorld"
+CodeJS.slugify("Hello World!"); // "hello-world"
 ```
 
-## Development
+### Array Utilities
 
-```bash
-npm test
-npm run lint
+```javascript
+CodeJS.unique([1, 2, 2, 3]); // [1, 2, 3]
+CodeJS.shuffle([1, 2, 3]); // [2, 1, 3] (randomized)
+CodeJS.chunk([1, 2, 3, 4], 2); // [[1, 2], [3, 4]]
 ```
 
-## Contributing
+### Object Utilities
 
-Contributions are welcome. Please open an issue to discuss significant changes before submitting a pull request.
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+CodeJS.pick(obj, ['a', 'c']); // { a: 1, c: 3 }
+CodeJS.omit(obj, ['b']); // { a: 1, c: 3 }
+```
 
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Open a pull request.
+### DOM Utilities
+
+```javascript
+const el = CodeJS.$('#myElement');
+CodeJS.addClass(el, 'active');
+CodeJS.on(el, 'click', () => console.log('Clicked!'));
+```
+
+### Math Utilities
+
+```javascript
+CodeJS.randomInt(1, 10); // Random integer between 1 and 10
+CodeJS.isPrime(7); // true
+CodeJS.clamp(15, 0, 10); // 10
+```
+
+### Date Utilities
+
+```javascript
+CodeJS.formatDate(new Date(), { year: 'numeric', month: 'long', day: 'numeric' });
+// "October 10, 2023"
+CodeJS.timeAgo('2023-10-01'); // "9 days ago"
+```
+
+### Function Utilities
+
+```javascript
+const debouncedFn = CodeJS.debounce(() => console.log('Debounced!'), 300);
+debouncedFn();
+```
+
+### Browser Storage
+
+```javascript
+CodeJS.storage.set('key', { value: 123 });
+const data = CodeJS.storage.get('key'); // { value: 123 }
+CodeJS.storage.remove('key');
+```
 
 ## License
 
-No license has been specified. Add a license file before using this project in a way that requires specific license terms.
+This project is licensed under the MIT License.
