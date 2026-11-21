@@ -2,6 +2,8 @@
   "use strict";
 
   const CodeJS = {};
+
+  const body = document.body
   
   const params = new URLSearchParams(window.location.search);
 
@@ -18,11 +20,21 @@
   CodeJS.lower = (str) =>
     typeof str === "string" ? str.toLowerCase() : "";
 
-  CodeJS.encode = (str) =>
-    typeof str === "string" ? encodeURIComponent(str) : "";
-  
-  CodeJS.decode = (str) =>
-    typeof str === "string" ? decodeURIComponent(str) : "";
+// Obfuscates text (e.g., "Password" -> "IlBhc3N3b3JkIg==")
+CodeJS.encode = (val) => {
+  if (val === undefined) return "";
+  return btoa(encodeURIComponent(JSON.stringify(val)));
+};
+
+CodeJS.decode = (str) => {
+  if (typeof str !== "string" || !str) return null;
+  try {
+    return JSON.parse(decodeURIComponent(atob(str)));
+  } catch (e) {
+    return null;
+  }
+};
+
 
   CodeJS.website = (url) => 
     typeof url === "string" ? window.location.href = url : "";
@@ -153,7 +165,7 @@
     return str.split(search).length - 1;
   };
 
-  CodeJS.removeSpaces = function (str) {
+  CodeJS.removeSpace = function (str) {
     return typeof str === "string" ? str.replace(/\s+/g, "") : "";
   };
 
