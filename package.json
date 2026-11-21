@@ -1,4 +1,32 @@
 {
-  "name": "CodeJS",
-  "main": "main.js"
+  "name": "codejs",
+  "version": "1.0.0",
+  "description": "A JavaScript library by Grayson Ogus.",
+  "main": "./main.js",
+  "exports": "./main.js",
+  "files": [
+    "main.js",
+    "readme.md",
+    "CodeJS.jpeg"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G-man124/CodeJS"
+  },
+  "homepage": "https://github.com/G-man124",
+  "keywords": [
+    "codeJS",
+    "javascript",
+    "library"
+  ],
+  "author": {
+    "name": "Grayson Ogus",
+    "url": "https://g-man124.github.io"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
 }
