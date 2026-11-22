@@ -2,8 +2,6 @@
   "use strict";
 
   const CodeJS = {};
-
-  const body = document.body
   
   const params = new URLSearchParams(window.location.search);
 
@@ -44,6 +42,57 @@ CodeJS.decode = (str) => {
         await navigator.clipboard.writeText(text);
     }
     };
+
+    CodeJS.save = function (action = "save", targetElement = document.getElementById("displayList")) {
+      let savedList = JSON.parse(localStorage.getItem("allSavedText")) || [];
+    
+      // Helper to update the passed element
+      function renderList(container) {
+        if (!container) return;
+        container.innerHTML = "";
+    
+        if (savedList.length === 0) {
+          container.innerHTML = "<li>No entries saved yet.</li>";
+          return;
+        }
+    
+        savedList.forEach((text) => {
+          const listItem = document.createElement("li");
+          listItem.innerText = text;
+          container.appendChild(listItem);
+        });
+      }
+    
+      // 1. CLEAR ACTION
+      if (action === "clear") {
+        if (confirm("Are you sure you want to delete all saved items?")) {
+          localStorage.removeItem("allSavedText");
+          savedList = [];
+          renderList(targetElement);
+        }
+        return;
+      }
+    
+      // 2. RENDER ACTION
+      if (action === "render") {
+        renderList(targetElement);
+        return;
+      }
+    
+      // 3. DEFAULT SAVE ACTION
+      const inputField = document.getElementById("myInput");
+      const userInput = inputField.value;
+    
+      if (userInput.trim() !== "") {
+        savedList.push(userInput);
+        localStorage.setItem("allSavedText", JSON.stringify(savedList));
+        inputField.value = "";
+        renderList(targetElement);
+      } else {
+        alert("Please type something before saving.");
+      }
+    };
+    
 
     CodeJS.type = function (el, text = '', speed = 60) {
       // Clear any existing typing animation on this element
